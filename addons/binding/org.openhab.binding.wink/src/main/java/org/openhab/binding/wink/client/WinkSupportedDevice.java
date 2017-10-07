@@ -19,7 +19,8 @@ public enum WinkSupportedDevice {
     BINARY_SWITCH("binary_switch", "/binary_switches"),
     REMOTE("remote", "/remotes"),
     LOCK("lock", "/locks"),
-    HUB("hub", "/hubs");
+    HUB("hub", "/hubs"),
+    DOORBELL("door_bell", "/door_bells");
 
     private String device_type;
     private String path;

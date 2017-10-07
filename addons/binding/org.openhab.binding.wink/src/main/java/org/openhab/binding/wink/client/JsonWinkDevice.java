@@ -48,6 +48,8 @@ public class JsonWinkDevice implements IWinkDevice {
             return WinkSupportedDevice.BINARY_SWITCH;
         } else if (json.get("remote_id") != null) {
             return WinkSupportedDevice.REMOTE;
+        } else if (json.get("door_bell_id") != null) {
+            return WinkSupportedDevice.DOORBELL;
         } else {
             return WinkSupportedDevice.HUB;
         }

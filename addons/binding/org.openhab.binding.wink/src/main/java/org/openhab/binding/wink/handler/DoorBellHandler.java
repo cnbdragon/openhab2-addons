@@ -8,34 +8,46 @@
  */
 package org.openhab.binding.wink.handler;
 
+import static org.openhab.binding.wink.WinkBindingConstants.*;
+
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.types.Command;
 import org.openhab.binding.wink.client.IWinkDevice;
 import org.openhab.binding.wink.client.WinkSupportedDevice;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Its a remote
  *
- * @author Sebastian Marchand
+ * @author Shawn Crosby
  *
  */
-public class RemoteHandler extends WinkBaseThingHandler {
-    public RemoteHandler(Thing thing) {
+public class DoorBellHandler extends WinkBaseThingHandler {
+    private final Logger logger = LoggerFactory.getLogger(DoorBellHandler.class);
+
+    public DoorBellHandler(Thing thing) {
         super(thing);
     }
 
     @Override
-    public void handleWinkCommand(ChannelUID channelUID, Command command) {
+    protected void handleWinkCommand(ChannelUID channelUID, Command command) {
+        // no op
     }
 
     @Override
     protected WinkSupportedDevice getDeviceType() {
-        return WinkSupportedDevice.REMOTE;
+        return WinkSupportedDevice.DOORBELL;
     }
 
     @Override
     protected void updateDeviceState(IWinkDevice device) {
-        // noop
+        logger.debug("Updating Doorbell device");
+        if (device.getCurrentState().get("motion").equals("true")) {
+            this.triggerChannel(CHANNEL_MOTION, "MOTION");
+        }
+        if (device.getCurrentState().get("button_pressed").equals("true")) {
+            this.triggerChannel(CHANNEL_BUTTON, "BUTTON PRESS");
+        }
     }
 }

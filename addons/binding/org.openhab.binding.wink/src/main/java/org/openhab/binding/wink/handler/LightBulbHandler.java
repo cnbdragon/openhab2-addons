@@ -69,7 +69,6 @@ public class LightBulbHandler extends WinkBaseThingHandler {
         } else {
             bridgeHandler.switchOffDevice(getDevice());
         }
-
     }
 
     @Override
@@ -79,7 +78,6 @@ public class LightBulbHandler extends WinkBaseThingHandler {
 
     @Override
     protected void updateDeviceState(IWinkDevice device) {
-
         final String desiredBrightness = device.getDesiredState().get("brightness");
         final String currentBrightness = device.getCurrentState().get("brightness");
         if (desiredBrightness != null && desiredBrightness.equals(currentBrightness)) {
@@ -100,5 +98,4 @@ public class LightBulbHandler extends WinkBaseThingHandler {
             }
         }
     }
-
 }

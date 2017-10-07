@@ -25,12 +25,15 @@ public class WinkBindingConstants {
     public static final ThingTypeUID THING_TYPE_REMOTE = new ThingTypeUID(BINDING_ID, "remote");
     public static final ThingTypeUID THING_TYPE_BINARY_SWITCH = new ThingTypeUID(BINDING_ID, "binary_switch");
     public static final ThingTypeUID THING_TYPE_LOCK = new ThingTypeUID(BINDING_ID, "lock");
+    public static final ThingTypeUID THING_TYPE_DOORBELL = new ThingTypeUID(BINDING_ID, "door_bell");
 
     // List of all Channel ids for a light bulb
     public static final String CHANNEL_LIGHTLEVEL = "lightlevel";
     public static final String CHANNEL_LIGHTSTATE = "lightstate";
     public static final String CHANNEL_SWITCHSTATE = "switchstate";
     public static final String CHANNEL_LOCKSTATE = "lockstate";
+    public static final String CHANNEL_MOTION = "motion";
+    public static final String CHANNEL_BUTTON = "buttonpress";
 
     // REST URI constants
     public static final String WINK_URI = "https://api.wink.com/";

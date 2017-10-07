@@ -67,7 +67,6 @@ public class DelegatedAuthenticationService implements IWinkAuthenticationServic
 
     @Override
     public String getAuthToken() {
-
         return token;
     }
 

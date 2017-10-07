@@ -18,6 +18,7 @@ import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandlerFactory;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
 import org.openhab.binding.wink.handler.BinarySwitchHandler;
+import org.openhab.binding.wink.handler.DoorBellHandler;
 import org.openhab.binding.wink.handler.LightBulbHandler;
 import org.openhab.binding.wink.handler.LockHandler;
 import org.openhab.binding.wink.handler.RemoteHandler;
@@ -38,7 +39,7 @@ public class WinkHandlerFactory extends BaseThingHandlerFactory {
     private Logger logger = LoggerFactory.getLogger(WinkHandlerFactory.class);
 
     public static final Set<ThingTypeUID> DISCOVERABLE_DEVICE_TYPES_UIDS = ImmutableSet.of(THING_TYPE_LIGHT_BULB,
-            THING_TYPE_REMOTE, THING_TYPE_BINARY_SWITCH, THING_TYPE_LOCK);
+            THING_TYPE_REMOTE, THING_TYPE_BINARY_SWITCH, THING_TYPE_LOCK, THING_TYPE_DOORBELL);
 
     private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = ImmutableSet.of(THING_TYPE_WINK_HUB_2);
 
@@ -63,6 +64,8 @@ public class WinkHandlerFactory extends BaseThingHandlerFactory {
             return new BinarySwitchHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_LOCK)) {
             return new LockHandler(thing);
+        } else if (thingTypeUID.equals(THING_TYPE_DOORBELL)) {
+            return new DoorBellHandler(thing);
         }
 
         return null;

@@ -15,6 +15,7 @@ The Hub supports not channels itself and basically just serves as a proxy for th
 When devices are connected to the wink hub they become discoverable by the binding through the wink api.  Different devices will support different channels depending on the capabilities of the device.
 
 ## Supported Things
+
 <table>
 <tr><td><b>Thing</b></td><td><b>Thing Type</b></td><td><b>Description</b></td></tr>
 <tr><td>wink_hub_2</td><td>Bridge</td><td>The Hub itself</td></tr>

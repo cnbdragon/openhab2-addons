@@ -84,7 +84,6 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
         } catch (RuntimeException e) {
             logger.error("Unable to process command: {}", e.getMessage());
         }
-
     }
 
     /**

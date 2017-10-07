@@ -57,6 +57,20 @@
             <parameter name="uuid" type="text" required="true" />
        </config-description>        
     </thing-type>
+    <thing-type id="door_bell">
+        <supported-bridge-type-refs>
+            <bridge-type-ref id="wink_hub_2"/>
+        </supported-bridge-type-refs>
+        <label>Doorbell</label>
+        <description>Connected Video Doorbell</description>
+        <channels>
+            <channel typeId="motion" id="motion"/>
+            <channel typeId="buttonpress" id="buttonpress"/>
+        </channels>
+        <config-description>
+            <parameter name="uuid" type="text" required="true" />
+        </config-description>
+    </thing-type>
     <channel-type id="lightDimmer">
         <item-type>Dimmer</item-type>
         <label>Light Level</label>
@@ -77,5 +91,16 @@
         <description>The Lock State</description>
         <category>Lock</category>
     </channel-type>
-
+    <channel-type id="motion">
+        <item-type>Switch</item-type>
+        <label>Motion</label>
+        <description>Motion Detected</description>
+        <category>Motion</category>
+    </channel-type>
+    <channel-type id="buttonpress">
+        <item-type>Switch</item-type>
+        <label>Button Press</label>
+        <description>Button Pressed</description>
+        <category>Button</category>
+    </channel-type>
 </thing:thing-descriptions>
