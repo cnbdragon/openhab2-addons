@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2017 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -36,11 +36,16 @@ public class TankerkoenigBindingConstants {
     public static final String CHANNEL_DIESEL = "diesel";
     public static final String CHANNEL_E10 = "e10";
     public static final String CHANNEL_E5 = "e5";
+    public static final String CHANNEL_STATION_OPEN = "station_open";
+    public static final String CHANNEL_HOLIDAY = "holiday";
 
     // config
     public static final String CONFIG_LOCATION_ID = "locationid";
     public static final String CONFIG_API_KEY = "apikey";
     public static final String CONFIG_REFRESH = "refresh";
     public static final String CONFIG_MODE_OPENINGTIME = "modeOpeningTime";
+
+    // String used Identify unsucessful web-return
+    public static final String NO_VALID_RESPONSE = "No valid response from the web-request!";
 
 }

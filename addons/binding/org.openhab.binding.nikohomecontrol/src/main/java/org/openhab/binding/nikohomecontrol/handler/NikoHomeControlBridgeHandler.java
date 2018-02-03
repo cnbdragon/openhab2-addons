@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2017 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -213,7 +213,6 @@ public class NikoHomeControlBridgeHandler extends BaseBridgeHandler {
 
     @Override
     public void handleConfigurationUpdate(Map<String, Object> configurationParameters) {
-        // can be overridden by subclasses
         Configuration configuration = editConfiguration();
         for (Entry<String, Object> configurationParmeter : configurationParameters.entrySet()) {
             configuration.put(configurationParmeter.getKey(), configurationParmeter.getValue());
@@ -248,6 +247,26 @@ public class NikoHomeControlBridgeHandler extends BaseBridgeHandler {
      */
     public void setNhcDiscovery(NikoHomeControlDiscoveryService nhcDiscovery) {
         this.nhcDiscovery = nhcDiscovery;
+    }
+
+    /**
+     * Send a trigger from an alarm received from Niko Home Control.
+     *
+     * @param Niko Home Control alarm message
+     */
+    public void triggerAlarm(String alarmText) {
+        triggerChannel(CHANNEL_ALARM, alarmText);
+        updateStatus(ThingStatus.ONLINE);
+    }
+
+    /**
+     * Send a trigger from a notice received from Niko Home Control.
+     *
+     * @param Niko Home Control alarm message
+     */
+    public void triggerNotice(String alarmText) {
+        triggerChannel(CHANNEL_NOTICE, alarmText);
+        updateStatus(ThingStatus.ONLINE);
     }
 
     /**
