@@ -23,7 +23,6 @@ When devices are connected to the wink hub they become discoverable by the bindi
 <tr><td>binary_switch</td><td>Thing</td><td>Simple On/Off Switch</td></tr>
 <tr><td>remote</td><td>Thing</td><td>Remote for hub</td></tr>
 <tr><td>lock</td><td>Thing</td><td>Connected Lock</td></tr>
-<tr><td>door_bell</td><td>Thing</td><td>Door Bell</td></tr>
 </table>
 
 ## Discovery
@@ -42,22 +41,13 @@ refresh_token=refresh_token_from_oauth_flow_adfajeinwaefnav83
 
 This will allow the binding to obtain a new access token whenever it needs one.
 
-You can optionally configure the binding to use a delegated authentication manager by logging into a simple service on heroku (https://openhab-authservice.herokuapp.com) and create an account using your github account by clicking the 'login with github' link.  Once you log in, you can click the 'connect to wink' button and go through the oauth dance.  The service will store tokens for you and provide tokens to your binding if you add the following config to your wink.cfg file:
-
-```
-auth_service=delegated
-auth_service_token=token_displayed_on_authservice_screen_after_login
-```
-
-This can also be configured from the Paper UI binding config screen.
-
 ## Thing Configuration
 
 If you want to configure things yourself, you should define the Bridge and all things like so:
 
 ```
 Bridge wink:wink_hub_2:hub "Wink Hub" {
-	Thing	light_bulb   MyLight	"My Light"  [uuid="2398fnakdn-akdsf-asdflakjdf-wein3"]
+	Thing	wink:light_bulb:MyLight	"My Light"  [uuid="2398fnakdn-akdsf-asdflakjdf-wein3"]
 }
 ```
 

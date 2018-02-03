@@ -18,10 +18,7 @@
             <channel id="lightstate" typeId="lightSwitch" />
         </channels>
         <config-description>
-            <parameter name="uuid" type="text" required="true">
-                <label>UUID</label>
-                <description>Unique Identifier assigned by Wink</description>
-            </parameter>
+            <parameter name="uuid" type="text" required="true" />
         </config-description>
 	</thing-type>
     <thing-type id="remote">
@@ -31,10 +28,7 @@
         <label>Remote</label>
         <description>Remote</description>
         <config-description>
-            <parameter name="uuid" type="text" required="true">
-                <label>UUID</label>
-                <description>Unique Identifier assigned by Wink</description>
-            </parameter>
+            <parameter name="uuid" type="text" required="true" />
         </config-description>
     </thing-type>
 	<thing-type id="binary_switch">
@@ -47,10 +41,7 @@
 			<channel id="switchstate" typeId="lightSwitch" />
 		</channels>
         <config-description>
-            <parameter name="uuid" type="text" required="true">
-                <label>UUID</label>
-                <description>Unique Identifier assigned by Wink</description>
-            </parameter>
+            <parameter name="uuid" type="text" required="true" />
         </config-description>
     </thing-type>
     <thing-type id="lock">
@@ -63,10 +54,7 @@
             <channel typeId="lockState" id="lockstate" />
         </channels>
        <config-description>
-            <parameter name="uuid" type="text" required="true">
-                <label>UUID</label>
-                <description>Unique Identifier assigned by Wink</description>
-            </parameter>
+            <parameter name="uuid" type="text" required="true" />
        </config-description>        
     </thing-type>
     <thing-type id="door_bell">
@@ -80,10 +68,7 @@
             <channel typeId="buttonpress" id="buttonpress"/>
         </channels>
         <config-description>
-            <parameter name="uuid" type="text" required="true">
-                <label>UUID</label>
-                <description>Unique Identifier assigned by Wink</description>
-            </parameter>
+            <parameter name="uuid" type="text" required="true" />
         </config-description>
     </thing-type>
     <channel-type id="lightDimmer">

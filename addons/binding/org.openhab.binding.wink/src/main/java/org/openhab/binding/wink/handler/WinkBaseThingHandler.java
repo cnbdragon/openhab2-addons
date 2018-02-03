@@ -9,8 +9,6 @@
 package org.openhab.binding.wink.handler;
 
 import java.util.Arrays;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.thing.Channel;
 import org.eclipse.smarthome.core.thing.ChannelUID;
@@ -31,8 +29,6 @@ import com.google.gson.JsonParser;
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
 import com.pubnub.api.callbacks.SubscribeCallback;
-import com.pubnub.api.enums.PNLogVerbosity;
-import com.pubnub.api.enums.PNStatusCategory;
 import com.pubnub.api.models.consumer.PNStatus;
 import com.pubnub.api.models.consumer.pubsub.PNMessageResult;
 import com.pubnub.api.models.consumer.pubsub.PNPresenceEventResult;
@@ -53,7 +49,6 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
 
     protected WinkHub2BridgeHandler bridgeHandler;
     protected PubNub pubnub;
-    private ScheduledFuture<?> pollingJob;
 
     @Override
     public void initialize() {
@@ -79,26 +74,7 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, e.getMessage());
             }
         }
-
-        pollingJob = this.scheduler.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                updateDeviceState(getDevice());
-            }
-        }, 0, 300, TimeUnit.SECONDS);
-
         super.initialize();
-    }
-
-    @Override
-    public void dispose() {
-        logger.debug("Shutting down thing {}", getThing());
-        if (pubnub != null) {
-            this.pubnub.unsubscribeAll();
-            this.pubnub.destroy();
-        }
-
-        this.pollingJob.cancel(true);
     }
 
     @Override
@@ -168,7 +144,6 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
 
             PNConfiguration pnConfiguration = new PNConfiguration();
             pnConfiguration.setSubscribeKey(device.getPubNubSubscriberKey());
-            pnConfiguration.setLogVerbosity(PNLogVerbosity.BODY);
 
             this.pubnub = new PubNub(pnConfiguration);
             this.pubnub.addListener(new SubscribeCallback() {
@@ -187,18 +162,10 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
 
                 @Override
                 public void status(PubNub arg0, PNStatus status) {
-                    if (status.getCategory() == PNStatusCategory.PNUnexpectedDisconnectCategory) {
-                        // internet got lost, do some magic and call reconnect when ready
-                        logger.error("Unexpected Disconnect from PubNub, reconnecting");
-                        pubnub.reconnect();
-                    } else if (status.getCategory() == PNStatusCategory.PNTimeoutCategory) {
-                        // do some magic and call reconnect when ready
-                        logger.error("PubNub timeout, reconnecting");
-                        pubnub.reconnect();
-                    } else if (status.isError()) {
-                        logger.error("PubNub Error {}", status.getCategory());
+                    if (status.isError()) {
+                        logger.error("PubNub communication error: {}", status);
                     } else {
-                        logger.debug("PubNub Status {}", status.getCategory());
+                        logger.trace("PubNub status: no error.");
                     }
                 }
             });
