@@ -25,7 +25,7 @@ public class TestJsonWinkDevice {
             + "        \"brightness_changed_at\": 1500161604.595307\n" + "      },\n" + "      \"subscription\": {\n"
             + "        \"pubnub\": {\n"
             + "          \"subscribe_key\": \"sub-c-f7bf7f7e-0542-11e3-a5e8-02ee2ddab7fe\",\n"
-            + "          \"channel\": \"c6bc7574826ae7d0278a9280db255523bbb69298|light_bulb-2666129|user-680593\"\n"
+            + "          \"channel\": \"abcdef01234567890987654321fedcba|light_bulb-87654321|user-123456\"\n"
             + "        }\n" + "      },\n" + "      \"light_bulb_id\": \"2666129\",\n"
             + "      \"name\": \"Rec Room Light\",\n" + "      \"locale\": \"en_ca\",\n" + "      \"units\": {},\n"
             + "      \"created_at\": 1494194322,\n" + "      \"hidden_at\": null,\n" + "      \"capabilities\": {},\n"
@@ -35,9 +35,9 @@ public class TestJsonWinkDevice {
             + "      \"upc_code\": \"lutron_p-pkg1w-wh-d\",\n"
             + "      \"primary_upc_code\": \"lutron_p-pkg1w-wh-d\",\n" + "      \"gang_id\": null,\n"
             + "      \"hub_id\": \"646537\",\n" + "      \"local_id\": \"1\",\n" + "      \"radio_type\": \"lutron\",\n"
-            + "      \"linked_service_id\": null,\n" + "      \"lat_lng\": [\n" + "        44.718752,\n"
-            + "        -63.702822\n" + "      ],\n" + "      \"location\": \"32 Royalfern Way\",\n"
-            + "      \"order\": 0\n" + "    }";
+            + "      \"linked_service_id\": null,\n" + "      \"lat_lng\": [\n" + "        12.3456677,\n"
+            + "        56.789000\n" + "      ],\n" + "      \"location\": \"location\",\n" + "      \"order\": 0\n"
+            + "    }";
 
     private IWinkDevice device;
 
@@ -75,8 +75,7 @@ public class TestJsonWinkDevice {
 
     @Test
     public void testGetPubNubChannel() {
-        assertEquals("c6bc7574826ae7d0278a9280db255523bbb69298|light_bulb-2666129|user-680593",
-                device.getPubNubChannel());
+        assertEquals("abcdef01234567890987654321fedcba|light_bulb-87654321|user-123456", device.getPubNubChannel());
     }
 
     @Test

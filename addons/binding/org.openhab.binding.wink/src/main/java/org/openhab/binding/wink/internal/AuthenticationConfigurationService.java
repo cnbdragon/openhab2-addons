@@ -34,7 +34,8 @@ public class AuthenticationConfigurationService implements ManagedService {
 
     @Override
     public void updated(Dictionary<String, ?> properties) throws ConfigurationException {
-        if (!properties.isEmpty() && properties.get("client_id") != null) {
+        if (!properties.isEmpty()
+                && ("delegated".equals(properties.get("auth_service")) || properties.get("client_id") != null)) {
             configure(properties);
         }
     }
