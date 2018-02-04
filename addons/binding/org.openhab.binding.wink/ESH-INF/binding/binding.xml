@@ -11,17 +11,17 @@
 	<config-description>
 		<parameter name="client_id" type="text">
 			<label>Wink App ID</label>
-			<description>ID obtained from developer.wink.com</description>
+			<description>ID obtained from developer.wink.com, required if you don't use the delegated authentication service.</description>
 			<required>false</required>
 		</parameter>
 		<parameter name="client_secret" type="text">
 			<label>Wink App Secret</label>
-			<description>Secret for App obtained from developer.wink.com</description>
+			<description>Secret for App obtained from developer.wink.com, required if you don't use the delegated authentication service.</description>
 			<required>false</required>
 		</parameter>
 		<parameter name="refresh_token" type="text">
 			<label>App Refresh Token</label>
-			<description>Valid refresh token generated from authentication with client_id and client_secret</description>
+			<description>Valid refresh token generated from authentication with client_id and client_secret, required if you don't use the delegated authentication service.</description>
 			<required>false</required>
 		</parameter>
 		<parameter name="auth_service" type="text">
@@ -34,7 +34,7 @@
 		</parameter>
 		<parameter name="auth_service_token" type="text">
 			<label>Auth Service Token</label>
-			<description>Token provided by the auth service that identifies you to the auth service</description>
+			<description>Token provided by the auth service that identifies you to the auth service. Required if you use the delegated authentication service.</description>
 			<required>false</required>
 		</parameter>
 	</config-description>

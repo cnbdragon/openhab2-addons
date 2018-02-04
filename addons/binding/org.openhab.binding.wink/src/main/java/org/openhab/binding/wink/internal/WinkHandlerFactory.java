@@ -21,7 +21,6 @@ import org.openhab.binding.wink.handler.BinarySwitchHandler;
 import org.openhab.binding.wink.handler.DoorBellHandler;
 import org.openhab.binding.wink.handler.LightBulbHandler;
 import org.openhab.binding.wink.handler.LockHandler;
-import org.openhab.binding.wink.handler.RemoteHandler;
 import org.openhab.binding.wink.handler.WinkHub2BridgeHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,27 +38,20 @@ public class WinkHandlerFactory extends BaseThingHandlerFactory {
     private Logger logger = LoggerFactory.getLogger(WinkHandlerFactory.class);
 
     public static final Set<ThingTypeUID> DISCOVERABLE_DEVICE_TYPES_UIDS = ImmutableSet.of(THING_TYPE_LIGHT_BULB,
-            THING_TYPE_REMOTE, THING_TYPE_BINARY_SWITCH, THING_TYPE_LOCK, THING_TYPE_DOORBELL);
-
-    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = ImmutableSet.of(THING_TYPE_WINK_HUB_2);
+            THING_TYPE_BINARY_SWITCH, THING_TYPE_LOCK, THING_TYPE_DOORBELL);
 
     @Override
     public boolean supportsThingType(ThingTypeUID thingTypeUID) {
         logger.debug("Checking if the factory supports {}", thingTypeUID.toString());
-        return SUPPORTED_THING_TYPES_UIDS.contains(thingTypeUID)
-                || DISCOVERABLE_DEVICE_TYPES_UIDS.contains(thingTypeUID);
+        return DISCOVERABLE_DEVICE_TYPES_UIDS.contains(thingTypeUID);
     }
 
     @Override
     protected ThingHandler createHandler(Thing thing) {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
-        if (thingTypeUID.equals(THING_TYPE_WINK_HUB_2)) {
-            return new WinkHub2BridgeHandler((Bridge) thing);
-        } else if (thingTypeUID.equals(THING_TYPE_LIGHT_BULB)) {
+        if (thingTypeUID.equals(THING_TYPE_LIGHT_BULB)) {
             return new LightBulbHandler(thing);
-        } else if (thingTypeUID.equals(THING_TYPE_REMOTE)) {
-            return new RemoteHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_BINARY_SWITCH)) {
             return new BinarySwitchHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_LOCK)) {

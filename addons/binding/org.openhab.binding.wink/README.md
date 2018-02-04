@@ -1,6 +1,6 @@
 # Wink Hub Binding
 
-This binding supports devices connected to a Wink Hub via the Wink cloud API.  At time of writing this binding supports Dimmable Lights, Binary light switches, Remotes and Connected Lock devices.
+This binding supports devices connected to a Wink Hub via the Wink cloud API.  At time of writing this binding supports Dimmable Lights, Binary light switches and Connected Lock devices.
 
 ## Overview
 
@@ -21,7 +21,6 @@ When devices are connected to the wink hub they become discoverable by the bindi
 <tr><td>wink_hub_2</td><td>Bridge</td><td>The Hub itself</td></tr>
 <tr><td>light_bulb</td><td>Thing</td><td>Dimmable Light Bulb</td></tr>
 <tr><td>binary_switch</td><td>Thing</td><td>Simple On/Off Switch</td></tr>
-<tr><td>remote</td><td>Thing</td><td>Remote for hub</td></tr>
 <tr><td>lock</td><td>Thing</td><td>Connected Lock</td></tr>
 <tr><td>door_bell</td><td>Thing</td><td>Door Bell</td></tr>
 </table>
@@ -40,7 +39,7 @@ client_secret=secret_from_wink.com_lakjdf9enadnaoariar
 refresh_token=refresh_token_from_oauth_flow_adfajeinwaefnav83
 ```
 
-This will allow the binding to obtain a new access token whenever it needs one.
+This will allow the binding to obtain a new access token whenever it needs one. You can obtain these values at https://developer.wink.com/.
 
 You can optionally configure the binding to use a delegated authentication manager by logging into a simple service on heroku (https://openhab-authservice.herokuapp.com) and create an account using your github account by clicking the 'login with github' link.  Once you log in, you can click the 'connect to wink' button and go through the oauth dance.  The service will store tokens for you and provide tokens to your binding if you add the following config to your wink.cfg file:
 

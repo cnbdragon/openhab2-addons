@@ -72,15 +72,13 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Device Not Connected");
                 }
             } catch (AuthenticationException e) {
-                logger.error("Unable to initialize device: {}", e.getMessage());
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR, e.getMessage());
             } catch (RuntimeException e) {
-                logger.error("Unable to initialize device: {}", e.getMessage());
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, e.getMessage());
             }
         }
 
-        pollingJob = this.scheduler.scheduleAtFixedRate(new Runnable() {
+        pollingJob = this.scheduler.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
                 updateDeviceState(getDevice());

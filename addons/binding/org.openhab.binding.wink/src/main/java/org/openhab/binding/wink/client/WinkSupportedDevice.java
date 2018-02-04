@@ -17,7 +17,6 @@ package org.openhab.binding.wink.client;
 public enum WinkSupportedDevice {
     DIMMABLE_LIGHT("light_bulb", "/light_bulbs"),
     BINARY_SWITCH("binary_switch", "/binary_switches"),
-    REMOTE("remote", "/remotes"),
     LOCK("lock", "/locks"),
     HUB("hub", "/hubs"),
     DOORBELL("door_bell", "/door_bells");

@@ -13,22 +13,8 @@
 		<description>Controls dimmable light bulb</description>
 
 		<channels>
-			<channel id="lightlevel" typeId="lightDimmer" />
-			<channel id="lightstate" typeId="lightSwitch" />
+			<channel id="brightness" typeId="lightDimmer" />
 		</channels>
-		<config-description>
-			<parameter name="uuid" type="text" required="true">
-				<label>UUID</label>
-				<description>Unique Identifier assigned by Wink</description>
-			</parameter>
-		</config-description>
-	</thing-type>
-	<thing-type id="remote">
-		<supported-bridge-type-refs>
-			<bridge-type-ref id="wink_hub_2" />
-		</supported-bridge-type-refs>
-		<label>Remote</label>
-		<description>Remote</description>
 		<config-description>
 			<parameter name="uuid" type="text" required="true">
 				<label>UUID</label>
