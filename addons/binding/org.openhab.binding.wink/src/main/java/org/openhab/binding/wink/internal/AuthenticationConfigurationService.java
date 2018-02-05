@@ -18,8 +18,10 @@ import org.openhab.binding.wink.client.IWinkAuthenticationService;
 import org.openhab.binding.wink.client.WinkAuthenticationService;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
-import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * @author Shawn Crosby
  *
  */
-@Component(service = ManagedService.class, immediate = true)
+@Component(service = ManagedService.class, immediate = true, property = "service.pid=org.openhab.wink")
 public class AuthenticationConfigurationService implements ManagedService {
     private final Logger logger = LoggerFactory.getLogger(AuthenticationConfigurationService.class);
 
@@ -70,6 +72,7 @@ public class AuthenticationConfigurationService implements ManagedService {
      * @param context The context of the component as defined by the framework
      * @throws Exception
      */
+    @Activate
     public void activate(ComponentContext context) throws Exception {
         Dictionary<String, Object> properties = context.getProperties();
         if (!properties.isEmpty() && properties.get("client_id") != null) {
@@ -84,6 +87,7 @@ public class AuthenticationConfigurationService implements ManagedService {
      * @param context The context of the component as defined by the framework
      * @throws Exception
      */
+    @Deactivate
     public void deactivate(ComponentContext context) throws Exception {
         logger.debug("Deactivating AuthConfigService");
     }
