@@ -89,21 +89,21 @@
 		<item-type>Switch</item-type>
 		<label>Lock State</label>
 		<description>The Lock State</description>
-    <category>Lock</category>
-    <state readOnly="true"></state>
+		<category>Lock</category>
+		<state readOnly="true"></state>
 	</channel-type>
 	<channel-type id="motion">
 		<item-type>Switch</item-type>
 		<label>Motion</label>
 		<description>Motion Detected</description>
 		<category>Motion</category>
-    <state readOnly="true"></state>
+		<state readOnly="true"></state>
 	</channel-type>
-  <channel-type id="buttonpress">
+	<channel-type id="buttonpress">
 		<item-type>Switch</item-type>
 		<label>Button Press</label>
 		<description>Button Pressed</description>
 		<category>Button</category>
-    <state readOnly="true"></state>
+		<state readOnly="true"></state>
 	</channel-type>
 </thing:thing-descriptions>

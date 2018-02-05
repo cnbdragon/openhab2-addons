@@ -39,9 +39,10 @@ public class WinkHub2BridgeHandler {
 
     private static WinkHub2BridgeHandler instance;
 
-    protected WinkHub2BridgeHandler() {}
+    protected WinkHub2BridgeHandler() {
+    }
 
-     /**
+    /**
      * Get a singleton instance of the wink hub handler.
      *
      * @return The hub handler instance.
