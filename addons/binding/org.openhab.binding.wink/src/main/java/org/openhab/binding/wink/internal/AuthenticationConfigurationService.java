@@ -18,6 +18,7 @@ import org.openhab.binding.wink.client.IWinkAuthenticationService;
 import org.openhab.binding.wink.client.WinkAuthenticationService;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
+import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author Shawn Crosby
  *
  */
+@Component(service = ManagedService.class, immediate = true)
 public class AuthenticationConfigurationService implements ManagedService {
     private final Logger logger = LoggerFactory.getLogger(AuthenticationConfigurationService.class);
 

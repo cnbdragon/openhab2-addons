@@ -25,9 +25,8 @@ public class WinkBindingConstants {
     public static final ThingTypeUID THING_TYPE_LOCK = new ThingTypeUID(BINDING_ID, "lock");
     public static final ThingTypeUID THING_TYPE_DOORBELL = new ThingTypeUID(BINDING_ID, "door_bell");
 
-    // List of all Channel ids for a light bulb
-    public static final String CHANNEL_LIGHTLEVEL = "lightlevel";
-    public static final String CHANNEL_LIGHTSTATE = "lightstate";
+    // List of all Channel ids.
+    public static final String CHANNEL_BRIGHTNESS = "brightness";
     public static final String CHANNEL_SWITCHSTATE = "switchstate";
     public static final String CHANNEL_LOCKSTATE = "lockstate";
     public static final String CHANNEL_MOTION = "motion";

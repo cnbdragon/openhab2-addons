@@ -32,33 +32,25 @@ import org.slf4j.LoggerFactory;
  * @author Shawn Crosby
  *
  */
-public class WinkHub2BridgeHandler extends BaseBridgeHandler {
+public class WinkHub2BridgeHandler {
 
     private IWinkClient client = WinkClient.getInstance();
     private final Logger logger = LoggerFactory.getLogger(WinkHub2BridgeHandler.class);
 
-    public WinkHub2BridgeHandler(Bridge bridge) {
-        super(bridge);
-    }
+    private static WinkHub2BridgeHandler instance;
 
-    @Override
-    public void initialize() {
-        WinkDeviceDiscoveryService discovery = new WinkDeviceDiscoveryService(this);
+    protected WinkHub2BridgeHandler() {}
 
-        this.bundleContext.registerService(DiscoveryService.class, discovery, null);
-
-        this.scheduler.schedule(new Runnable() {
-            @Override
-            public void run() {
-                // connect();
-            }
-        }, 0, TimeUnit.SECONDS);
-        super.initialize();
-    }
-
-    @Override
-    public void handleCommand(ChannelUID channelUID, Command command) {
-        logger.debug("Bridge Handler doesn't supporte any commands");
+     /**
+     * Get a singleton instance of the wink hub handler.
+     *
+     * @return The hub handler instance.
+     */
+    public static synchronized WinkHub2BridgeHandler getInstance() {
+        if (instance == null) {
+            instance = new WinkHub2BridgeHandler();
+        }
+        return instance;
     }
 
     /**

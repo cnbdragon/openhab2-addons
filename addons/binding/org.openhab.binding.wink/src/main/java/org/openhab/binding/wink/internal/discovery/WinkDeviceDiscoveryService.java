@@ -19,29 +19,28 @@ import java.util.concurrent.TimeUnit;
 import org.eclipse.smarthome.config.discovery.AbstractDiscoveryService;
 import org.eclipse.smarthome.config.discovery.DiscoveryResult;
 import org.eclipse.smarthome.config.discovery.DiscoveryResultBuilder;
+import org.eclipse.smarthome.config.discovery.DiscoveryService;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.ThingUID;
 import org.openhab.binding.wink.client.IWinkDevice;
 import org.openhab.binding.wink.client.WinkClient;
 import org.openhab.binding.wink.client.WinkSupportedDevice;
-import org.openhab.binding.wink.handler.WinkHub2BridgeHandler;
 import org.openhab.binding.wink.internal.WinkHandlerFactory;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Used to discover new devices associated with a wink Hub
  *
- * @author Sebastian Marchand
+ * @author Sebastien Marchand
  */
+@Component(service = DiscoveryService.class, immediate = true)
 public class WinkDeviceDiscoveryService extends AbstractDiscoveryService {
     private final Logger logger = LoggerFactory.getLogger(WinkDeviceDiscoveryService.class);
-    private WinkHub2BridgeHandler hubHandler;
 
-    public WinkDeviceDiscoveryService(WinkHub2BridgeHandler hubHandler) throws IllegalArgumentException {
+    public WinkDeviceDiscoveryService() throws IllegalArgumentException {
         super(WinkHandlerFactory.DISCOVERABLE_DEVICE_TYPES_UIDS, 10);
-
-        this.hubHandler = hubHandler;
     }
 
     private ScheduledFuture<?> scanTask;
@@ -55,7 +54,6 @@ public class WinkDeviceDiscoveryService extends AbstractDiscoveryService {
                 public void run() {
                     List<IWinkDevice> devices = WinkClient.getInstance().listDevices();
                     logger.debug("Found {} connected devices", devices.size());
-                    ThingUID bridgeThingId = hubHandler.getThing().getUID();
                     for (IWinkDevice device : devices) {
                         if (!WinkSupportedDevice.HUB.equals(device.getDeviceType())) {
                             logger.debug("Creating Discovery result {}", device);
@@ -66,7 +64,7 @@ public class WinkDeviceDiscoveryService extends AbstractDiscoveryService {
                             props.put("uuid", device.getId());
 
                             DiscoveryResult result = DiscoveryResultBuilder.create(thingId).withLabel(device.getName())
-                                    .withProperties(props).withBridge(bridgeThingId).build();
+                                    .withProperties(props).build();
                             thingDiscovered(result);
                             logger.debug("Discovered Thing: {}", thingId);
                         }

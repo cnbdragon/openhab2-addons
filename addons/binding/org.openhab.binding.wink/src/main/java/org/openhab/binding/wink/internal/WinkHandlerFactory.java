@@ -17,11 +17,13 @@ import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandlerFactory;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
+import org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory;
 import org.openhab.binding.wink.handler.BinarySwitchHandler;
 import org.openhab.binding.wink.handler.DoorBellHandler;
 import org.openhab.binding.wink.handler.LightBulbHandler;
 import org.openhab.binding.wink.handler.LockHandler;
 import org.openhab.binding.wink.handler.WinkHub2BridgeHandler;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +35,7 @@ import com.google.common.collect.ImmutableSet;
  *
  * @author Sebastien Marchand - Initial contribution
  */
+@Component(service = ThingHandlerFactory.class, immediate = true)
 public class WinkHandlerFactory extends BaseThingHandlerFactory {
 
     private Logger logger = LoggerFactory.getLogger(WinkHandlerFactory.class);

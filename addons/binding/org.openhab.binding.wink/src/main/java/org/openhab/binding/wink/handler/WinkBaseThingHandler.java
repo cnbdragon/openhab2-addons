@@ -58,7 +58,7 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
     @Override
     public void initialize() {
         logger.debug("Initializing Device {}", getThing());
-        bridgeHandler = (WinkHub2BridgeHandler) getBridge().getHandler();
+        bridgeHandler = WinkHub2BridgeHandler.getInstance();
         if (getThing().getConfiguration().get("uuid") == null) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
                     "UUID must be specified in Config");
@@ -85,7 +85,7 @@ public abstract class WinkBaseThingHandler extends BaseThingHandler {
             }
         }, 0, 300, TimeUnit.SECONDS);
 
-        super.initialize();
+        updateStatus(ThingStatus.ONLINE);
     }
 
     @Override
